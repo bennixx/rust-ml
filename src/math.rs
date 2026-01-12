@@ -58,6 +58,35 @@ impl VecN {
     }
 }
 
+pub struct Matrix {
+    data: Vec<f64>,
+    rows: usize,
+    cols: usize,
+}
+
+impl Matrix {
+    pub fn new(data: Vec<f64>, rows: usize, cols: usize) -> Self {
+        assert_eq!(
+            data.len(),
+            rows * cols,
+            "data length does not match dimensions"
+        );
+        Self { data, rows, cols }
+    }
+
+    pub fn filled(rows: usize, cols: usize, value: f64) -> Self {
+        Self {
+            data: vec![value; rows * cols],
+            rows,
+            cols,
+        }
+    }
+
+    pub fn dim(&self) -> (usize, usize) {
+        (self.rows, self.cols)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
