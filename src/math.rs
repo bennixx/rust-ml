@@ -58,13 +58,13 @@ impl VecN {
     }
 }
 
-pub struct Matrix {
+pub struct MatrixMxN {
     data: Vec<f64>,
     rows: usize,
     cols: usize,
 }
 
-impl Matrix {
+impl MatrixMxN {
     pub fn new(data: Vec<f64>, rows: usize, cols: usize) -> Self {
         assert_eq!(
             data.len(),
@@ -143,10 +143,6 @@ impl Matrix {
 mod tests {
     use super::*;
 
-    fn approx_eq(a: f64, b: f64, eps: f64) -> bool {
-        (a - b).abs() < eps
-    }
-
     fn assert_approx_eq(a: f64, b: f64, eps: f64) {
         assert!((a - b).abs() < eps, "expected {a} ≈ {b} (eps {eps})");
     }
@@ -165,7 +161,7 @@ mod tests {
 
     #[test]
     fn test_transpose() {
-        let a = Matrix::new(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0], 2, 3);
+        let a = MatrixMxN::new(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0], 2, 3);
 
         let t = a.transpose();
 
@@ -181,8 +177,8 @@ mod tests {
 
     #[test]
     fn test_matmul() {
-        let a = Matrix::new(vec![4.0, 3.0, 2.0, 1.0, 2.0, 3.0], 2, 3);
-        let b = Matrix::new(vec![2.0, 3.0, 4.0], 3, 1);
+        let a = MatrixMxN::new(vec![4.0, 3.0, 2.0, 1.0, 2.0, 3.0], 2, 3);
+        let b = MatrixMxN::new(vec![2.0, 3.0, 4.0], 3, 1);
         let c = a.matmul(&b);
 
         assert_eq!(c.rows, 2);
