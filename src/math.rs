@@ -155,12 +155,12 @@ mod tests {
     fn test_dot() {
         let a = VecN::new(vec![1.0, 2.0, 3.0]);
         let b = VecN::new(vec![4.0, 5.0, 6.0]);
-        assert!(approx_eq(a.dot(&b), 32.0, 1e-6));
+        assert_approx_eq(a.dot(&b), 32.0, 1e-6);
     }
 
     #[test]
     fn test_norm() {
-        assert!(approx_eq(VecN::new(vec![3.0, 4.0]).norm(), 5.0, 1e-6));
+        assert_approx_eq(VecN::new(vec![3.0, 4.0]).norm(), 5.0, 1e-6);
     }
 
     #[test]
